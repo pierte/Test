@@ -1,5 +1,21 @@
-var ensDiv = document.getElementsByTagName("div"); // donne un tableau des divs
+let pChange = document.getElementsByTagName("p");
+let currentP = 0;
+let cacher = function(i){
+    pChange[i].style.display = "none";
+};
+let afficher = function(i){
+    pChange[i].style.display = "block";
+};
 
-for(var i = 0; i< ensDiv.length; i++){
-    ensDiv[i].style.backgroundColor = "red"; // met tous les divs en red
-}
+cacher(currentP+1);
+pChange[currentP].addEventListener("click", function(){
+    cacher(currentP);
+    if(currentP == 1){
+        currentP--;
+    }else{
+        currentP++;
+    }
+    afficher(currentP);
+    return currentP;
+});
+console.log(currentP);
