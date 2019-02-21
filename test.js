@@ -1,21 +1,21 @@
-let pChange = document.getElementsByTagName("p");
-let currentP = 0;
-let cacher = function(i){
-    pChange[i].style.display = "none";
-};
-let afficher = function(i){
-    pChange[i].style.display = "block";
-};
-
-cacher(currentP+1);
-pChange[currentP].addEventListener("click", function(){
-    cacher(currentP);
-    if(currentP == 1){
-        currentP--;
-    }else{
-        currentP++;
-    }
-    afficher(currentP);
-    return currentP;
-});
-console.log(currentP);
+function Personne(age, nom , prenom, nick, travail, friends){
+    this.age = age;
+    this.prenom = prenom;
+    this.nom = nom;
+    this.nick = nick;
+    this.travail = travail;
+    this.friends = friends;
+    this.addfriend = function(age, nom, prenom, nick, travail){
+        this.friends.push(new Personne(age, nom, prenom, nick, travail, friends));
+    };
+    this.afficher = function(){
+        let pAfficher = document.getElementById("prenom");
+        let text = "Je m'appelle " + this.nom + " " + this.prenom + ", j'ai " +
+        this.age + " ans. On me surnomme " + this.nick + " et je travaille en tant que "
+        + this.travail + ".";
+        pAfficher.innerText = text;
+    };
+}
+let jean = new Personne(24, "Dupont", "Jean", "Jeannet", "boulanger", []);
+jean.addfriend(22, "Kol", "Jack", "Jaquet", "boucher");
+jean.afficher();
